@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS versions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  schema_version INTEGER NOT NULL,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO versions (schema_version) VALUES ('1');

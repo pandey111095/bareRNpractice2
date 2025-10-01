@@ -95,3 +95,32 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+
+
+# SQL Migrations (SQLite)
+To add new script follow below steps:
+## Using Shell
+  1. Execute the following shell commands to create a migration script:
+  ```shell
+  chmod +x scripts/create-migration.sh && ./scripts/create-migration.sh
+  ```
+  2. This creates a .sql file following the naming convention, update the "update_this_title" part with the purpose of the migration and follow the instruction within that file.
+      **(timestamp_purpose.sql ex:- 1758873906_create_versions_table.sql)**
+  3. Add an entry to array migrations inside **src/db/migrations/index.ts** file like in following example, increasing the version number by 1 each time you add a new migration. Keep in mind that multiple scripts can be added to a single migration as long as they are separated by comma ('x','y','z'):
+  ```typescript
+    {
+      version: 1,
+      scriptFiles: ['1758873906_create_versions_table.sql'],
+    }
+  ```
+  4. Build the application. In build process there is a script/task added to copy these sql files to the correspondent location inside bundled project of IOS and Android, so that our runMigration() will pick up scripts and execute.
+
+## Manual
+  1. Add your new script at below mentioned place:
+      src/
+        ├── db/
+        │   ├── migrations/
+  2. Naming convention should be like below:
+      **(timestamp_purpose.sql ex:- 1758873906_create_versions_table.sql)**
+  3. Execute steps 3 and 4 in Using Shell.

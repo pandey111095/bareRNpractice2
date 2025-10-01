@@ -49,7 +49,11 @@ react {
     // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
     //
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
-    // hermesFlags = ["-O", "-output-source-map"]
+    // hermesFlags = ["-O", "-output-source-map"]project.ext.vectoricons = [
+    project.ext.vectoricons = [
+        iconFontNames: ['FontAwesome.ttf', 'AntDesign.ttf', 'Ionicons.ttf']
+    ]
+    apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
        /* Autolinking */
     autolinkLibrariesWithApp()
 }
@@ -117,3 +121,28 @@ dependencies {
         implementation jscFlavor
     }
 }
+
+
+// ---- Migration Copy Task ----
+task copyMigrations(type: Exec) {
+    // Paths
+    def srcMigrations = "${rootDir}/../src/db/migrations"
+    def destMigrations = "${projectDir}/src/main/assets/"
+
+    // Delete old migrations first
+    doFirst {
+        def destDir = file(destMigrations)
+        if (destDir.exists()) {
+            println "🗑 Cleaning old migrations..."
+            destDir.deleteDir()
+        }
+        // Recreate the directory
+        destDir.mkdirs()
+    }
+
+    // Copy new migrations
+    commandLine "cp", "-R", srcMigrations, destMigrations
+}
+
+// Run before building
+preBuild.dependsOn(copyMigrations)

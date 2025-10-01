@@ -14,10 +14,20 @@ import {
 } from 'react-native-safe-area-context';
 import AuthScreen from './AuthScreen';
 import PasswordResetScreen from './PasswordResetScreen';
+import { runMigrations } from './src/db';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
   
+    useEffect(() => {
+    (async () => {
+      try {
+        await runMigrations();
+      } catch (e) {
+        console.error('❌ Migration error:', e);
+      }
+    })();
+  }, []);
 
 
   return (

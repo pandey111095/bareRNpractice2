@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS goals (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  account_id TEXT NOT NULL,
+  type INTEGER NOT NULL,
+  target_amount REAL DEFAULT 0,
+  user_id INTEGER NOT NULL,
+  fixed_amount REAL DEFAULT 0,
+  date_start DATE,
+  date_end DATE,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  percentage REAL DEFAULT 0,
+  current_amount REAL DEFAULT 0,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
