@@ -6,19 +6,25 @@
  */
 
 import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import { StatusBar, StyleSheet, useColorScheme, View, Text } from 'react-native';
+import React, { useEffect } from 'react';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import AuthScreen from './AuthScreen';
+import PasswordResetScreen from './PasswordResetScreen';
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
+  
+
 
   return (
     <SafeAreaProvider>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <AuthScreen />
+      <PasswordResetScreen/>
     </SafeAreaProvider>
   );
 }

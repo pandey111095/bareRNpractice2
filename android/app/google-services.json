@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "442139355982",
+    "project_id": "bareauthtest",
+    "storage_bucket": "bareauthtest.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:442139355982:android:3d2041161086871784cc1f",
+        "android_client_info": {
+          "package_name": "com.barernpractice2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUoEpPkGNJHn5-gLDeM7s1-u1xJEO5GdI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
